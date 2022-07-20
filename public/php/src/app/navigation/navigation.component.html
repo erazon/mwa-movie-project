@@ -1,0 +1,22 @@
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+          <img src="assets/images/popcorn.png" width="40px" alt="logo" />
+        </a>
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+          <li routerLinkActive="active"><a routerLink="/" class="nav-link px-2">Home</a></li>
+          <li routerLinkActive="active"><a routerLink="/movies" class="nav-link px-2">Movies</a></li>
+          <li routerLinkActive="active"><a routerLink="/movie/search" class="nav-link px-2">Search</a></li>
+          <li *ngIf="isLoggedIn" routerLinkActive="active"><a routerLink="/movie/add" class="nav-link px-2">Add Movie</a></li>
+        </ul>
+
+        <div class="text-end">
+          <button *ngIf="!isLoggedIn" type="button" class="btn btn-outline-light me-2" routerLink="/login">Login</button>
+          <button *ngIf="!isLoggedIn" type="button" class="btn btn-warning" routerLink="/register">Register</button>
+          <button *ngIf="isLoggedIn" type="button" class="btn btn-outline-light me-2" (click)="onLogout()">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>

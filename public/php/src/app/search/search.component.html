@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Search movie by title</h2>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input class="form-control" formControlName="title" id="title" placeholder="Movie title">
+                <div *ngIf="searchForm.controls['title'].invalid && (searchForm.controls['title'].dirty || searchForm.controls['title'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="searchForm.controls['title'].errors?.['required']">
+                        Title is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </form>
+        <br />
+
+        <ul class="list-group">
+            <li *ngFor="let movie of movies" class="list-group-item">
+                <a routerLink="/movies/{{movie._id}}">{{movie.title}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

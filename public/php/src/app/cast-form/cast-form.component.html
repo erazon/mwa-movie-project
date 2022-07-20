@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header">
+        <h2>{{pageTitle}} cast</h2>
+    </div>
+    <div class="card-body">
+        <div *ngIf="successMessage" class="alert alert-success">
+            {{successMessage}}
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{errorMessage}}
+        </div>
+        <!--Reactive form-->
+        <form [formGroup]="castForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input class="form-control" formControlName="name" id="name" placeholder="Name">
+                <div *ngIf="castForm.controls['name'].invalid && (castForm.controls['name'].dirty || castForm.controls['name'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="castForm.controls['name'].errors?.['required']">
+                        Name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="debut_year" class="form-label">Debut Year</label>
+                <input class="form-control" formControlName="debut_year" id="debut_year" placeholder="Debut Year">
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

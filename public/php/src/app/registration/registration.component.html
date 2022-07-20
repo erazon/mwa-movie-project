@@ -1,0 +1,51 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Register</h2>
+    </div>
+    <div class="card-body">
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{errorMessage}}
+        </div>
+        <!--Reactive form-->
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input class="form-control" formControlName="name" id="name" placeholder="Your name">
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input class="form-control" formControlName="username" id="username" placeholder="Username">
+                <div *ngIf="registrationForm.controls['username'].invalid && (registrationForm.controls['username'].dirty || registrationForm.controls['username'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['username'].errors?.['required']">
+                        Username is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input class="form-control" formControlName="password" id="password" placeholder="Password"
+                    type="password">
+                <div *ngIf="registrationForm.controls['password'].invalid && (registrationForm.controls['password'].dirty || registrationForm.controls['password'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="registrationForm.controls['password'].errors?.['required']">
+                        Password is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input class="form-control" formControlName="confirmPassword" id="confirmPassword"
+                    placeholder="Confirm password" type="password">
+                <div *ngIf="showPasswordMismatchError" class="alert alert-danger">
+                    <div>
+                        Confirm password does not match.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

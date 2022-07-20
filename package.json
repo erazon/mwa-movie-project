@@ -1,0 +1,27 @@
+{
+  "name": "php",
+  "version": "1.0.0",
+  "description": "Personal hobby project",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "npm run startBackend | npm run startFrontend",
+    "startBackend": "node app.js",
+    "startFrontend": "cd public/php && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongo"
+  ],
+  "author": "Sahidul Hassan",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.0"
+  }
+}

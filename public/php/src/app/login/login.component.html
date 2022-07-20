@@ -1,0 +1,36 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Login</h2>
+    </div>
+    <div class="card-body">
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{errorMessage}}
+        </div>
+        <!--Template form-->
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input class="form-control" id="username" name="username" placeholder="Username" (ngModel)="username"
+                    #username="ngModel" required>
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                    <div *ngIf="username.errors?.['required']">
+                        Name is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input class="form-control" id="password" name="password" placeholder="Password" type="password"
+                    (ngModel)="password" #password="ngModel" required>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors?.['required']">
+                        Password is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="card-header">
+        <h5>{{movie.title | uppercase}}</h5>
+    </div>
+    <div class="card-body">
+        <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+        Year: {{movie.year}}<br />
+        Genre: {{movie.genre? movie.genre.join(', '): ''}}<br />
+        Casts: <a *ngIf="isLoggedIn" routerLink="/movie-cast/{{movie._id}}/cast/add">Add Cast</a>
+        <ul>
+            <li *ngFor="let cast of movie.casts" class="list-group-item">
+                {{cast.name}} - {{cast.debut_year}}
+                <a *ngIf="isLoggedIn" routerLink="/movie-cast/{{movie._id}}/cast/edit/{{cast._id}}"><i class="bi-pencil-square" style="font-size: 1rem; color: blue;"></i></a>
+                <a *ngIf="isLoggedIn" class="delete" (click)="onCastDeleteClick(movie._id, cast._id)"><i class="bi-trash-fill" style="font-size: 1rem; color: red;"></i></a>
+            </li>
+        </ul>
+        <button *ngIf="isLoggedIn" class="btn btn-primary" routerLink="/movie/edit/{{movie._id}}">Edit</button>&nbsp;
+        <button *ngIf="isLoggedIn" class="btn btn-danger" (click)="onMovieDeleteClick(movie._id)">Delete</button>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header">
+        <h2>{{pageTitle}} movie</h2>
+    </div>
+    <div class="card-body">
+        <div *ngIf="successMessage" class="alert alert-success">
+            {{successMessage}}
+        </div>
+        <div *ngIf="errorMessage" class="alert alert-danger">
+            {{errorMessage}}
+        </div>
+        <!--Reactive form-->
+        <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input class="form-control" formControlName="title" id="title" placeholder="Movie title">
+                <div *ngIf="movieForm.controls['title'].invalid && (movieForm.controls['title'].dirty || movieForm.controls['title'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="movieForm.controls['title'].errors?.['required']">
+                        Title is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="year" class="form-label">Year</label>
+                <input class="form-control" formControlName="year" id="year" placeholder="Release year">
+                <div *ngIf="movieForm.controls['year'].invalid && (movieForm.controls['year'].dirty || movieForm.controls['year'].touched)"
+                    class="alert alert-danger">
+                    <div *ngIf="movieForm.controls['year'].errors?.['required']">
+                        Release year is required.
+                    </div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <input class="form-control" formControlName="genre" id="genre" placeholder="Genre">
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
